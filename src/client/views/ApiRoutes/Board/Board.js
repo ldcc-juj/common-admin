@@ -8,6 +8,15 @@ class Board extends Component {
   //   return <Redirect to='/dashboard' />
   // }
 
+  componentDidMount() {
+    fetch('/api/blame/list')
+      .then(res => res.json())
+      .then(user => {
+        console.log(user);
+        // this.setState({ username: user.username })
+      });
+  }
+
   render() {
     const lastTdWidth = {
       width: '150px'

@@ -8,3 +8,4 @@ dist/*
 npm-debug.log
 yarn.lock
 package-lock.json
+src/server/config/env/*
