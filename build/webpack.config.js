@@ -25,14 +25,20 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
-        test: /\.(png|jpg|woff|woff2|eot|ttf|svg)$/,
+        test: /\.(woff|woff2|eot|ttf|svg)$/,
         loader: 'url-loader?limit=100000'
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        loader: 'file-loader?name=images/[name].[ext]'
       }
     ]
   },
   devServer: {
     port: 3000,
     open: true,
+    contentBase: "./public",
+    hot: true,
     proxy: {
       '/api': 'http://localhost:8080'
     }

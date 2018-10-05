@@ -3,7 +3,8 @@
 ./dist
 *.log
 node_modules/
-dist/
+dist
+dist/*
 npm-debug.log
 yarn.lock
 package-lock.json

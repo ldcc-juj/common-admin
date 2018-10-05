@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { AppAsideToggler, AppHeaderDropdown, AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
 import logo from '../../assets/img/ldcc_logo.png'
 import sygnet from '../../assets/img/lotte_logo.png'
+import avatar9 from '../../assets/img/avatars/9.jpg';
 
 const propTypes = {
   children: PropTypes.node,
@@ -39,7 +40,7 @@ class DefaultHeader extends Component {
           </NavItem> */}
           <AppHeaderDropdown direction="down">
             <DropdownToggle nav>
-              <img src={'assets/img/avatars/9.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
+              <img src={avatar9} className="img-avatar" alt="admin@bootstrapmaster.com" />
             </DropdownToggle>
             <DropdownMenu right style={{ right: 'auto' }}>
               <DropdownItem header tag="div" className="text-center"><strong>Account</strong></DropdownItem>
