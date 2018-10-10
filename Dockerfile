@@ -15,4 +15,4 @@ WORKDIR /app/admin
 
 CMD npm run start
 
-EXPOSE 8080
+EXPOSE 9090
