@@ -11,7 +11,7 @@ target=`echo $result | cut -d ' ' -f9`
 docker rmi $target
 
 docker build -t admin-web:v0.1 .
-docker run --name=admin-web -d -v /etc/localtime:/etc/localtime:ro -e TZ=Asia/Seoul -p 80:80 admin-web:v0.1
+docker run --name=admin-web -d -v /etc/localtime:/etc/localtime:ro -e TZ=Asia/Seoul -p 9090:80 admin-web:v0.1
 
 echo "."
 echo "."
