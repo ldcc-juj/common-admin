@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import { Badge, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row, Table, Button } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 
+const TableHeader = (props) => {
+  const { thContent } = props;
+  return (
+    <thead>
+      <tr> { thContent.map(item => (<th>{item}</th>)) } </tr>
+    </thead>
+  );
+}
+
 class Board extends Component {
 
   componentDidMount() {
@@ -14,16 +23,14 @@ class Board extends Component {
   }
 
   render() {
-    const lastTdWidth = {
-      width: '150px'
-    };
+    const lastTdWidth = { width: '150px' };
     return (
       <div className="animated fadeIn">
         <Row>
           <Col>
             <Card>
               <CardHeader>
-                <i className="fa fa-align-justify"></i> API 리스트
+                <i className="fa fa-align-justify"></i> Common-Board
               </CardHeader>
               <CardBody>
                 <Table responsive>
