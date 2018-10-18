@@ -35,7 +35,7 @@ function processRun() {
     app.use(bodyParser.json({limit: '15mb'}));
     app.use(bodyParser.urlencoded({ extended: true, limit: '15mb' }));
     app.set('trust proxy', config.server.trust_proxy_host);
-    app.use(express.static('dist'));
+    app.use(express.static('../../dist'));
 
     entity.Init();
     routes.Init();

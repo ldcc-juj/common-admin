@@ -9,7 +9,6 @@ class Board extends Component {
       .then(res => res.json())
       .then(user => {
         console.log(user);
-        alert(user.toString());
         // this.setState({ username: user.username })
       });
   }
