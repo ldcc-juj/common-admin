@@ -9,27 +9,32 @@ export default {
         },
       },
       {
-        name: 'Dashboard',
-        url: '/dashboard',
-        icon: 'icon-speedometer',
-        // badge: {
-        //   variant: 'info',
-        //   text: 'NEW',
-        // },
+        name: 'API Routes',
+        url: '/apiroutes/list',
+        icon: 'icon-pie-chart',
       },
+      // {
+      //   name: 'Dashboard',
+      //   url: '/dashboard',
+      //   icon: 'icon-speedometer',
+      //   // badge: {
+      //   //   variant: 'info',
+      //   //   text: 'NEW',
+      //   // },
+      // },
       {
         name: 'Groups',
         url: '/table',
         icon: 'icon-puzzle',
       },
       {
-        name: 'API Routes',
-        url: '/apiroutes/list',
-        icon: 'icon-pie-chart',
-      },
-      {
         name: 'Flow Chart',
         url: '/flowchart/state',
+        icon: 'icon-calculator',
+      },
+      {
+        name: 'Common',
+        url: '/blame/list',
         icon: 'icon-calculator',
       },
       {
