@@ -9880,3 +9880,7 @@ html body .app.flex-row.align-items-center {
 .display-block{
   display: block !important;
 }
+
+.vertical-middle{
+  vertical-align: middle !important;
+}

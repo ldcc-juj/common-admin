@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Badge, Container, Button, Row, Col, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
+import { withRouter } from 'react-router-dom';
+
+import { getStatusRequest } from '../../actions/AuthActions';
 
 import {
   AppAside,
@@ -51,6 +55,13 @@ class DefaultLayout extends Component {
   }
 
   componentDidMount() {
+
+    this.props.getStatusRequest().then(_ => {
+
+        if(!this.props.status.valid){
+            this.props.history.push('/login');
+        }
+    });
 
     // DB에서 봇 리스트 가져오기
     let data = [{
@@ -190,4 +201,18 @@ class DefaultLayout extends Component {
   }
 }
 
-export default DefaultLayout;
+const mapStateToProps = (state) => {
+  return {
+      status: state.authentication.status
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      getStatusRequest: () => {
+          return dispatch(getStatusRequest());
+      }
+  };
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DefaultLayout));
