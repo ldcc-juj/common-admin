@@ -3,7 +3,7 @@ import { Container, Row, Col, Badge, Button, Card, CardHeader, CardTitle, CardTe
 import queryString from 'query-string';
 
 import './detail.css';
-import {Phrase, Context, Response} from '../Block';
+import {Phrase, Context, Response, Parameter, Quarter} from '../Block';
 
 class DetailIntent extends Component {
     constructor(props){
@@ -62,6 +62,12 @@ class DetailIntent extends Component {
                                 <FormFeedback>블록 이름을 설정해주세요!</FormFeedback>
                             </Col>
                         </Row>
+                    </FormGroup>
+                    <FormGroup>
+                        <Quarter intent_name={this.props.match.params.intent_name}/>
+                    </FormGroup>
+                    <FormGroup>
+                        <Parameter intent_name={this.props.match.params.intent_name}/>
                     </FormGroup>
                     {/*<FormGroup>
                         <Row>

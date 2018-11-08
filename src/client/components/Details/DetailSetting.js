@@ -47,6 +47,7 @@ class DetailSetting extends Component {
                         <Card body>
                             <CardTitle>봇 삭제</CardTitle>
                             <Alert color="danger">
+                                <i className="icon-info icons"></i>&nbsp;&nbsp;
                                 한 번 삭제하면 다시 복구할 수 없습니다! 그래도 삭제하시겠습니까?
                             </Alert>
                             <Col xs="4" className="padding-none"><Button color="danger">영구 삭제</Button></Col>

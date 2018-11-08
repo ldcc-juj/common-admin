@@ -203,6 +203,11 @@ class DetailScnario extends Component {
 
         return (
             <div>
+                <Row>
+                    <Col>
+                        <h2>bot_1</h2>
+                    </Col>
+                </Row>
                 <Nav tabs className="custom-navitem">
                     <NavItem className="custom-navitem">
                         <NavLink

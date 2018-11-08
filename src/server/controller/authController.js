@@ -78,15 +78,20 @@ router.post('/login', async (req, res) => {
 router.post('/getSession', async(req, res) => {
 
   if(typeof req.session.auth === "undefined" || !req.cookies.key) {
-      return respondJson(res, resultCode.error, null);
+    return respondJson(res, resultCode.error, null);
   }
 
   respondJson(res, resultCode.success, { session: req.session.auth });
 });
 
 router.post('/logout', (req, res) => {
-  req.session.destroy(err => { if(err) throw err; });
-  return respondJson(res, resultCode.success, { session: "destroyed" })
+  try{
+    go(_ => req.session.destroy(err => { if(err) throw err }),
+      _ => respondJson(res, resultCode.success, { session: "destroyed" }));
+    }
+  catch(error){
+    respondOnError(res, resultCode.error, error.message);
+  }
 });
 
 module.exports = router;

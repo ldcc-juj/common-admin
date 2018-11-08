@@ -28,6 +28,10 @@ class DefaultFrame extends Component {
         super(props);
     }
 
+    componentDidMount(){
+        // 추후에 이곳에 봇 아이디로 시나리오 정보 불러오기
+    }
+
     navigation = {
         items: [
             {

@@ -28,7 +28,7 @@ const clusterOn = process.env.CLUSTER_ON || false;
 const devPort = 3000;
 
 global.app = new express();
-global.baseUrl = process.env.NODE_ENV === 'ec2' ? `http://ec2-18-225-32-252.us-east-2.compute.amazonaws.com:${config.server.port}`
+global.baseUrl = process.env.NODE_ENV === 'ec2' ? `http://ec2-13-113-71-4.ap-northeast-1.compute.amazonaws.com:${config.server.port}`
 : `http://localhost:${config.server.port}`;
 
 
