@@ -1,8 +1,9 @@
 import React from 'react';
 import Loadable from 'react-loadable'
+import Loader from 'react-loader-spinner'
 
 function Loading() {
-  return <div>Loading...</div>;
+  return ( <Loader type="Rings" color="#00BFFF" height="100"	width="100" />);
 }
 
 const DetailScnario = Loadable({
@@ -34,8 +35,7 @@ const routes = [
   { path: '/bot/:bot_name/scnario',  exact: true, name: '봇 시나리오', component: DetailScnario },
   { path: '/bot/:bot_name/scnario/:scenario_name?',  name: '봇 블록', component: DetailBlockList },
   { path: '/bot/:bot_name/intent/:intent_name',  name: '새 블록', component: DetailIntent },
-  { path: '/bot/:bot_name/setting',  name: '새 블록', component: DetailSetting },
-  { path: '/bot/blame/list', name: 'Common List Component', component: BlameList }
+  { path: '/bot/:bot_name/setting',  name: '새 블록', component: DetailSetting }
 ];
 
 export default routes;

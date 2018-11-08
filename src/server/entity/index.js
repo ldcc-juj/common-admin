@@ -19,6 +19,18 @@ const user = sequelizeInstance.define('user', {
     collate: 'utf8_unicode_ci'
 });
 
+const bot = sequelizeInstance.define('bot', {
+    user_id: { type: sequelize.INTEGER(11), allowNull : true }, // false
+    name: { type : sequelize.STRING(255), allowNull : true }, // false
+    description: { type : sequelize.STRING(300), allowNull : true } // false
+},
+{
+    charset: 'utf8',
+    collate: 'utf8_unicode_ci'
+});
+
+
 module.exports = {
-    user
+    user,
+    bot
 };

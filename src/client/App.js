@@ -25,7 +25,7 @@ class App extends Component {
             <Route exact path="/home" name="Home" component={DefaultLayout} />
             <Route path="/login" name="Login Page" component={Login} />
             <Route path="/register" name="Register Page" component={Register} />
-            <Route path="/bot" name="botframe" component={DefaultFrame}/>
+            <Route path="/bot/:bot_name" name="botframe" component={DefaultFrame}/>
           </Switch>
           </Provider>
         </HashRouter>

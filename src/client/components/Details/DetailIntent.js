@@ -63,7 +63,7 @@ class DetailIntent extends Component {
                             </Col>
                         </Row>
                     </FormGroup>
-                    <FormGroup>
+                    {/*<FormGroup>
                         <Row>
                             <Col sm="12" className="padding-none">
                                 <Card body>
@@ -75,7 +75,7 @@ class DetailIntent extends Component {
                                 </Card>
                             </Col>
                         </Row>
-                    </FormGroup>
+                    </FormGroup>*/}
                     <FormGroup>
                         <Phrase intent_name={this.props.match.params.intent_name} handleChange={this.handleChange} handleKeyPress={this.handleKeyPress}/>
                     </FormGroup>

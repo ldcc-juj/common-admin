@@ -25,6 +25,8 @@ import DefaultAside from '../../components/DefaultAside';
 import DefaultHeader from '../../components/DefaultHeader';
 import CardComponent from '../../components/Cards/CardComponent';
 
+import './DefaultLayout.css';
+
 class DefaultLayout extends Component {
 
   id = 3;
@@ -55,13 +57,13 @@ class DefaultLayout extends Component {
   }
 
   componentDidMount() {
-
-    this.props.getStatusRequest().then(_ => {
+    // 세션 관리 부분
+    /*this.props.getStatusRequest().then(_ => {
 
         if(!this.props.status.valid){
             this.props.history.push('/login');
         }
-    });
+    });*/
 
     // DB에서 봇 리스트 가져오기
     let data = [{
@@ -157,7 +159,7 @@ class DefaultLayout extends Component {
           <DefaultHeader page="main"/>
         </AppHeader>
         <div className="app-body">
-          <main className="main">
+          <main className="main margin-left-0">
             <Container fluid>
               <Row>
                 <Col className="align-items-center">
