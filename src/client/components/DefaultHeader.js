@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { AppAsideToggler, AppHeaderDropdown, AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
 import logo from '../assets/img/ldcc_logo.png'
 import sygnet from '../assets/img/lotte_logo.png'
-import avatar9 from '../assets/img/avatars/9.jpg';
+import avatar9 from '../assets/img/avatars/User-Circle-512.png';
 
 import { logoutRequest } from '../actions/AuthActions';
 

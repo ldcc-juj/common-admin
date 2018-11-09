@@ -92,7 +92,7 @@ class DefaultFrame extends Component {
                         </Switch>
                         </Container>
                     </main>
-                    <AppAside fixed hidden>
+                    <AppAside fixed>
                         <DefaultAside />
                     </AppAside>
                 </div>

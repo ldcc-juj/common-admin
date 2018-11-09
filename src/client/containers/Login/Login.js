@@ -32,7 +32,6 @@ class Login extends Component {
   handleKeyPress(e) {
     if(e.charCode === 13){
       e.preventDefault();
-      console.log("????");
       this.handleLogin();
     }
   }

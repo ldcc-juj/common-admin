@@ -9884,3 +9884,14 @@ html body .app.flex-row.align-items-center {
 .vertical-middle{
   vertical-align: middle !important;
 }
+
+.background-white{
+  background: white !important;
+}
+
+.custom-center{
+  position: relative !important;
+  bottom: 50% !important;
+  left: 50% !important;
+  vertical-align: middle !important;
+}
