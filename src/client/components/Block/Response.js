@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Alert, Container, Row, Col, Badge, Button, Card, CardHeader, CardTitle, CardText, CardBody, CardFooter, Label, Input, FormGroup, FormFeedback, Form, ListGroup, ListGroupItem, InputGroup, InputGroupText, InputGroupAddon, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Tooltip , Alert, Container, Row, Col, Badge, Button, Card, CardHeader, CardTitle, CardText, CardBody, CardFooter, Label, Input, FormGroup, FormFeedback, Form, ListGroup, ListGroupItem, InputGroup, InputGroupText, InputGroupAddon, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 import {TextType} from './ReponseType';
 
@@ -144,7 +144,7 @@ class Response extends Component {
             <Row>
                 <Col sm="12" className="padding-none">
                     <Card body>
-                        <CardTitle>출력</CardTitle>
+                        <CardTitle>응답</CardTitle>
                         <CardText>
                             <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                                 <DropdownToggle caret>
@@ -153,7 +153,8 @@ class Response extends Component {
                                 <DropdownMenu right>
                                     <DropdownItem tag="button" onClick={() => {this.handleResponse("text");}}><i className="icon-pencil icons"></i>텍스트 형식</DropdownItem>
                                     <DropdownItem tag="button"><i className="icon-check icons"></i>되묻기</DropdownItem>
-                                    <DropdownItem tag="button"><i className="icon-link icons"></i>URL</DropdownItem>
+                                    <DropdownItem tag="button"><i className="icon-link icons"></i>웹 URL</DropdownItem>
+                                    <DropdownItem tag="button"><i className="icon-picture icons"></i>이미지 URL</DropdownItem>
                                     <DropdownItem tag="button"><i className="icon-grid icons"></i>버튼 리스트</DropdownItem>
                                 </DropdownMenu>
                                 <ListGroup flush>

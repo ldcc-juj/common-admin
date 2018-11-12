@@ -46,6 +46,7 @@ class DefaultLayout extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleWrite = this.handleWrite.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   handleChange(e) {
@@ -134,6 +135,13 @@ class DefaultLayout extends Component {
     });
   }
 
+  handleKeyPress(e) {
+    if(e.charCode === 13){
+      e.preventDefault();
+      this.handleWrite();
+    }
+  }
+
   toggle() {
     this.setState({
       bots: this.state.bots,
@@ -186,10 +194,10 @@ class DefaultLayout extends Component {
             <Form>
               <FormGroup>
               <Label for="bot-name">봇 이름</Label>
-              <Input type="text" name="newbotname" id="bot-name" valid onChange={this.handleChange}/>
-              <FormFeedback valid>Sweet! that name is available</FormFeedback>
+              <Input type="text" name="newbotname" id="bot-name" invalid value={newbotname} onChange={this.handleChange}/>
+              <FormFeedback invalid>봇 이름을 설정해주세요!</FormFeedback>
               <Label for="bot-desc">봇 설명</Label>
-              <Input type="textarea" name="newbotdesc" id="bot-desc" onChange={this.handleChange}/>
+              <Input type="textarea" name="newbotdesc" id="bot-desc" value={newbotdesc} onChange={this.handleChange} onKeyPress={this.handleKeyPress}/>
               </FormGroup>
             </Form>
           </ModalBody>

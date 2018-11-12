@@ -30,6 +30,7 @@ class DetailScnario extends Component {
         this.tabToggle = this.tabToggle.bind(this);
         this.goBlock = this.goBlock.bind(this);
         this.setOffSwitch = this.setOffSwitch.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
     id = 3;
@@ -177,6 +178,13 @@ class DetailScnario extends Component {
         });
     }
 
+    handleKeyPress(e) {
+        if(e.charCode === 13){
+          e.preventDefault();
+          this.handleWrite();
+        }
+      }
+
     handleChange(e) {
         let nextState = {};
     
@@ -244,8 +252,8 @@ class DetailScnario extends Component {
                             <Form>
                                 <FormGroup>
                                 <Label for="scnario-title">시나리오 제목</Label>
-                                <Input type="text" name="newScnario" id="scnario-title" valid onChange={this.handleChange}/>
-                                <FormFeedback valid>Sweet! that name is available</FormFeedback>
+                                <Input type="text" name="newScnario" id="scnario-title" value={newScnario} invalid onChange={this.handleChange} onKeyPress={this.handleKeyPress}/>
+                                <FormFeedback invalid>시나리오명을 입력하세요.</FormFeedback>
                                 </FormGroup>
                             </Form>
                             </ModalBody>
@@ -281,7 +289,7 @@ class DetailScnario extends Component {
                                                 <Fragment><i className="icon-loop icons"></i>&nbsp;&nbsp;폴백 블록</Fragment>
                                             </Col>
                                             <Col sm="6" className="text-right">
-                                                <Button className="padding-none" color="link" onClick={()=>{this.goBlock(event, this.state.welcomeId);}}><i className="icon-link icons"></i>&nbsp;&nbsp;설정</Button>
+                                                <Button className="padding-none" color="link" onClick={()=>{this.goBlock(event, this.state.fallbackId);}}><i className="icon-link icons"></i>&nbsp;&nbsp;설정</Button>
                                                 &nbsp;&nbsp;
                                                 <AppSwitch size="sm" className={classnames('mx-1', 'vertical-middle')} variant={'pill'} color={'danger'} checked={this.state.fallbackState} onChange={() => {this.setOffSwitch(this.state.fallbackId);}}/>
                                             </Col>

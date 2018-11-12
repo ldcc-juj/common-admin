@@ -1,9 +1,13 @@
 import React from 'react';
 import Loadable from 'react-loadable'
-import Loader from 'react-loader-spinner'
+//import Loader from 'react-loader-spinner'
+import './scss/style.css';
 
 function Loading() {
-  return ( <Loader type="Rings" color="#00BFFF" height="100"	width="100" />);
+  return (
+    <div>Loading...</div>
+    /*<Loader type="Rings" color="#00BFFF" height="100"	width="100" className="custom-center"/>*/
+  );
 }
 
 const DetailScnario = Loadable({
@@ -23,11 +27,6 @@ const DetailIntent = Loadable({
 
 const DetailSetting = Loadable({
   loader: () => import('./components/Details/DetailSetting'),
-  loading: Loading,
-});
-
-const BlameList = Loadable({
-  loader: () => import('./views/Blames/list'),
   loading: Loading,
 });
 
