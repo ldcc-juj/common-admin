@@ -26,37 +26,37 @@ class Quarter extends Component {
         let data = [];
 
         data = [{
-                id: 0,
+                id: "@49238423",
                 parent: null,
                 tree: 0,
                 name: '웰컴 블록',
                 type: "welcome"
         }, {
-            id: 1,
+            id: "@58027010",
             parent: null,
             tree: 0,
             name: '폴백 블록',
             type: "fallback"
         }, {
-            id: 2,
+            id: 0,
             parent: null,
             tree: 0,
             name: 'block_1',
             type: "custom"
         }, {
-            id: 3,
+            id: 1,
             parent: null,
             tree: 0,
             name: 'block_2',
             type: "custom"
         }, {
-            id: 4,
+            id: 2,
             parent: null,
             tree: 0,
             name: 'block_3',
             type: "custom"
         }, {
-            id: 5,
+            id: 3,
             parent: null,
             tree: 0,
             name: 'block_4',
@@ -153,7 +153,7 @@ class Quarter extends Component {
                     <td>{block.type}</td>
                     <td style={lastTdWidth}>
                     <FormGroup>
-                        <Input type="select" bsSize="sm" name="select" id="blockKind" onChange={() => this.handleChange(event, block)} value={prev.id === block.id || next.id === block.id? prev.id === block.id? "prev":"next" : "none"}>
+                        <Input type="select" disabled={this.props.intent_name === block.id.toString()? true : false} bsSize="sm" name="select" id="blockKind" onChange={() => this.handleChange(event, block)} value={prev.id === block.id || next.id === block.id? prev.id === block.id? "prev":"next" : "none"}>
                             <option value="none">----------</option>
                             <option value="prev">이전 블록</option>
                             <option value="next">다음 블록</option>
