@@ -13,8 +13,6 @@ class CardComponent extends Component {
     handleRemove(){
         const {thisbot, onRemove} = this.props;
 
-        console.log(thisbot.id);
-
         onRemove(thisbot.id);
     }
 
@@ -23,19 +21,23 @@ class CardComponent extends Component {
     }
 
     render(){
-        const {thisbot: {id, bot_name, scnario, desc}} = this.props;
+        const {thisbot: {id, name, description}} = this.props;
 
-        let bot_url = "/bot/" + {id}.id + "/scnario";
+
+        console.log("thisbot is ");
+        console.log(this.props.thisbot);
+
+        let bot_url = "/bot/" + id + "/scnario";
 
         return (
             
             <Col xs="3">
                 <Card body>
                     <CardTitle>
-                        <Col xs="8" className="display-inline padding-none">{bot_name}</Col>
+                        <Col xs="8" className="display-inline padding-none">{name}</Col>
                         <Col xs="4" className="display-inline text-right padding-none"><Button close onClick={this.handleRemove}/></Col>
                     </CardTitle>
-                    <CardText className="text-center">{scnario} 개의 시나리오 | {desc}</CardText>
+                    <CardText className="text-center">{description}</CardText>
                     <Button onClick={() => {this.onHref(bot_url);}}>수정하기</Button>
                 </Card>
             </Col>
