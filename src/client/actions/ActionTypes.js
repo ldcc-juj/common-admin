@@ -27,3 +27,11 @@ export const BOT_DELETE_FAILURE = "BOT_DELETE_FAILURE";
 export const BOT_UPDATE = "BOT_UPDATE";
 export const BOT_UPDATE_SUCCESS = "BOT_UPDATE_SUCCESS";
 export const BOT_UPDATE_FAILURE = "BOT_UPDATE_FAILURE";
+
+/*
+bot details
+*/
+export const JSON_GET = "JSON_GET";
+export const JSON_GET_SUCCESS = "JSON_GET_SUCCESS";
+export const JSON_GET_FAILURE = "JSON_GET_FAILURE";
+

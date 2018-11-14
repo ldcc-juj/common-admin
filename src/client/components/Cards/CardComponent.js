@@ -17,17 +17,13 @@ class CardComponent extends Component {
     }
 
     onHref(url){
-        this.props.history.push(url);
+        return this.props.history.push(url);
     }
 
     render(){
         const {thisbot: {id, name, description}} = this.props;
 
-
-        console.log("thisbot is ");
-        console.log(this.props.thisbot);
-
-        let bot_url = "/bot/" + id + "/scnario";
+        let bot_url = "/bot/" + id + "/scenario";
 
         return (
             
