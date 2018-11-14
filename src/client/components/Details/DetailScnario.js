@@ -51,15 +51,13 @@ class DetailScnario extends Component {
         this.props.getJsonRequest(this.props.match.params.bot_name).then(_ => {
 
             if(this.props.scenario_list.status === 'SUCCESS'){
-                data = JSON.parse(this.props.scenario_list.scenarios);
+                data = JSON.parse(this.props.scenario_list.scenarios); // JSON 내 시나리오 파싱
                 
                 let scenarioArr = [];
 
-                console.log(Object.values(data.scenarios));
-
                 this.id = Object.values(data.scenarios).length;
 
-                Object.values(data.scenarios).forEach((element, index) => {
+                Object.values(data.scenarios).forEach((element, index) => { // 각 시나리오의 이름, 타이틀, 블록 목록을 state에 저장
                     scenarioArr.push({
                         id: "scenario_0"+(index+1),
                         title: element.name,

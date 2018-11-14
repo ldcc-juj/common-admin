@@ -31,10 +31,10 @@ class DetailIntent extends Component {
 
     goBlockList(query){
         if(typeof query.scenarioId === "undefined"){
-            return this.props.history.push('/bot/'+this.props.match.params.bot_name+'/scnario');
+            return this.props.history.push('/bot/'+this.props.match.params.bot_name+'/scenario');
         }
 
-        const url = '/bot/'+this.props.match.params.bot_name+'/scnario/'+query.scenarioId;
+        const url = '/bot/'+this.props.match.params.bot_name+'/scenario/'+query.scenarioId;
 
         this.props.history.push(url);
     }

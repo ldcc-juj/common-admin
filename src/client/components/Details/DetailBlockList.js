@@ -26,8 +26,8 @@ class DetailBlockList extends Component {
     addEvent = false;
     removeEvent = false;
 
-    blockArr = [];
-    WholeBlocks = [];
+    blockArr = []; // state.blocks에 저장하기 위한 배열
+    WholeBlocks = []; // 전체 블록 리스트 저장
 
     recursive_push_arr(nextjson, parent, tree){
 
@@ -59,24 +59,24 @@ class DetailBlockList extends Component {
 
         if(localStorage.getItem('currentScenario') !== this.props.match.params.scenario_name){
             localStorage.removeItem('currentBlockList');
-        }
+        } // 다른 시나리오를 편집하러 들어왔을 시 로컬 스토리지 비움
 
         if(localStorage.getItem('currentBlockList')){
             return this.setState({
                 blocks: JSON.parse(localStorage.getItem('currentBlockList'))
             });
-        }
+        } // 새로고침 눌렀을 때 이미 데이터를 가지고 있으므로 이걸로 state 저장
 
         if(this.props.block_list.status === 'SUCCESS'){
-            data = JSON.parse(this.props.block_list.scenarios);
+            data = JSON.parse(this.props.block_list.scenarios); // 전역 state의 JSON 내의 시나리오 파싱 
 
             let current_blocks = JSON.parse(JSON.stringify(data.scenarios[this.props.match.params.scenario_name].list));
 
-            let startBlocks = data.scenarios[this.props.match.params.scenario_name].head;
+            let startBlocks = data.scenarios[this.props.match.params.scenario_name].head; // 시나리오 내 head 배열 저장
 
-            this.WholeBlocks = Object.values(current_blocks);
+            this.WholeBlocks = Object.values(current_blocks); // json 객체 배열화
 
-            startBlocks.forEach((element) => {
+            startBlocks.forEach((element) => { // head 배열부터 state에 저장
                 let toInt = parseInt(element);
                 this.blockArr.push({
                     id: this.props.match.params.scenario_name+'_'+toInt,
@@ -85,7 +85,7 @@ class DetailBlockList extends Component {
                     tree: 0
                 });
     
-                if(this.WholeBlocks[toInt].next !== null) {
+                if(this.WholeBlocks[toInt].next !== null) { // head 배열의 next가 있을 시 재귀 함수 돌면서 저장
                     this.recursive_push_arr(this.WholeBlocks[toInt].next, this.props.match.params.scenario_name+'_'+toInt, 1);
                 }
             });
@@ -94,14 +94,12 @@ class DetailBlockList extends Component {
                 blocks: this.blockArr
             });
 
-            localStorage.setItem('currentScenario', this.props.match.params.scenario_name);
+            localStorage.setItem('currentScenario', this.props.match.params.scenario_name); // 로컬스토리지를 갱신해야 하는지(다른 시나리오에 들어왔는지) 판단하기 위해 저장
 
-            localStorage.setItem('currentBlockList', JSON.stringify(this.blockArr));
+            localStorage.setItem('currentBlockList', JSON.stringify(this.blockArr)); // 새로고침 누를 시 redux state가 유지되지 않으므로 로컬 스토리지에 저장
         }
         
         this.id = this.blockArr.length;
-
-        console.log(this.blockArr);
     }
 
     removeBlock(id){
