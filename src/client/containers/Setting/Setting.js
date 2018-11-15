@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Button, Card, CardTitle, Alert } from 'reactstrap';
+import { Container, Row, Col, Button, Card, CardTitle, Alert, Label, Input } from 'reactstrap';
 
 class Setting extends Component {
     constructor(props){
@@ -10,6 +10,8 @@ class Setting extends Component {
             botDesc: '',
             apiUrl: ''
         }
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount(){
@@ -18,6 +20,14 @@ class Setting extends Component {
             botDesc: '첫번째 봇',
             apiUrl: 'https://www.lotte.net'
         });
+    }
+
+    handleChange(){
+        let nextState = {};
+    
+        nextState[e.target.name] = e.target.value;
+    
+        this.setState(nextState);
     }
 
     render(){
@@ -29,9 +39,9 @@ class Setting extends Component {
                         <Card body>
                             <CardTitle>기본 설정</CardTitle>
                             <Label for="bot-name">이름</Label>
-                            <Input type="text" name="botName" id="bot-name" value={ botName }/>
+                            <Input type="text" name="botName" id="bot-name" value={ botName } onChange={ this.handleChange }/>
                             <Label for="bot-desc">설명</Label>
-                            <Input type="text" name="botDesc" id="bot-desc" value={ botDesc }/>
+                            <Input type="text" name="botDesc" id="bot-desc" value={ botDesc } onChange={ this.handleChange }/>
                             <Label for="bot-api-url">API URL (변경 불가)</Label>
                             <Input type="text" name="apiUrl" id="bot-api-url" disabled value={ apiUrl }/>
                             <Col sm="12" className="text-right padding-none">
