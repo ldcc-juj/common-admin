@@ -24,7 +24,7 @@ class Login extends Component {
     this.props.getStatusRequest().then(_ => {
 
         if(this.props.valid){
-            this.props.history.push('/home');
+            this.props.history.push('/');
         }
     });
   }
@@ -49,7 +49,7 @@ class Login extends Component {
   }
 
   handleLogin() {
-      console.log(this.state.account);
+
       return this.props.loginRequest(this.state.account, this.state.password).then(
           () => {
 
@@ -57,7 +57,7 @@ class Login extends Component {
                   
                   console.log(document.cookie);
 
-                  this.props.history.push('/home');
+                  this.props.history.push('/');
                   return true;
               }
               else{
