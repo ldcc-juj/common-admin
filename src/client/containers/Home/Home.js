@@ -56,7 +56,9 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    // 세션 관리 부분
+    /* Session Validation Part (Now Commented) */
+    /*
+    
     this.props.getStatusRequest().then(_ => {
         
         if(!this.props.status.valid){
@@ -80,6 +82,35 @@ class Home extends Component {
           }
         });
     });
+
+    */
+
+    let data = [
+      {
+        id: 0,
+        name: '문의 봇',
+        description: '문의 담당 봇',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 1,
+        name: '정보 알림 봇',
+        description: '마트 정보 알리미 봇',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+    ];
+
+    this.setState({
+      bots: data,
+      bot_number: data.length,
+      modal: this.state.modal,
+      newbotname:this.state.newbotname,
+      newbotdesc: this.state.newbotdesc
+    });
+
+    this.id = data.length;
   };
 
   shouldComponentUpdate(nextProps, nextState) {
