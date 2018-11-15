@@ -8,18 +8,9 @@ import { getBotsRequest } from '../../actions/BotActions';
 
 import {
   AppAside,
-  AppBreadcrumb,
-  AppFooter,
-  AppHeader,
-  AppSidebar,
-  AppSidebarFooter,
-  AppSidebarForm,
-  AppSidebarHeader,
-  AppSidebarMinimizer,
-  AppSidebarNav,
+  AppHeader
 } from '@coreui/react';
-// routes config
-import routes from '../../routes';
+
 import { Aside, Header } from '../../components/Page';
 import CardComponent from '../../components/Card/CardComponent';
 
@@ -34,10 +25,10 @@ class Home extends Component {
 
     this.state = {
       bots: [],
-      bot_number: 0,
+      numberOfBots: 0,
       modal: false,
-      newbotname:'',
-      newbotdesc:''
+      newBotName:``,
+      newBotDesc:``
     }
 
     this.toggle = this.toggle.bind(this);
@@ -72,10 +63,10 @@ class Home extends Component {
     
             this.setState({
               bots: data,
-              bot_number: data.length,
+              numberOfBots: data.length,
               modal: this.state.modal,
-              newbotname:this.state.newbotname,
-              newbotdesc: this.state.newbotdesc
+              newBotName:this.state.newBotName,
+              newBotDesc: this.state.newBotDesc
             });
 
             this.id = data.length;
@@ -104,10 +95,10 @@ class Home extends Component {
 
     this.setState({
       bots: data,
-      bot_number: data.length,
+      numberOfBots: data.length,
       modal: this.state.modal,
-      newbotname:this.state.newbotname,
-      newbotdesc: this.state.newbotdesc
+      newBotName:this.state.newBotName,
+      newBotDesc: this.state.newBotDesc
     });
 
     this.id = data.length;
@@ -115,28 +106,28 @@ class Home extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
 
-    if (nextState.bots.length !== nextState.bot_number) return false;
+    if (nextState.bots.length !== nextState.numberOfBots) return false;
     return true;
   }
 
   handleWrite(){
-    let newbotname = this.state.newbotname;
-    let newbotdesc = this.state.newbotdesc;
+    let newBotName = this.state.newBotName;
+    let newBotDesc = this.state.newBotDesc;
 
-    let newbotlist = [...this.state.bots, {
+    let newBotList = [...this.state.bots, {
       id: ++this.id,
-      name: newbotname,
-      description: newbotdesc,
+      name: newBotName,
+      description: newBotDesc,
       createdAt: new Date(),
       updatedAt: new Date()
     }];
 
     this.setState({
-      bots: newbotlist,
-      bot_number: ++this.state.bot_number,
+      bots: newBotList,
+      numberOfBots: ++this.state.numberOfBots,
       modal: false,
-      newbotname:'',
-      newbotdesc: ''
+      newBotName:'',
+      newBotDesc: ''
     });
   }
 
@@ -144,10 +135,10 @@ class Home extends Component {
 
     this.setState({
       bots: this.state.bots.filter(bot => bot.id !== id),
-      bot_number: --this.state.bot_number,
+      numberOfBots: --this.state.numberOfBots,
       modal: this.state.modal,
-      newbotname:'',
-      newbotdesc: ''
+      newBotName:'',
+      newBotDesc: ''
     });
   }
 
@@ -161,21 +152,21 @@ class Home extends Component {
   toggle() {
     this.setState({
       bots: this.state.bots,
-      bot_number: this.state.bot_number,
+      numberOfBots: this.state.numberOfBots,
       modal: !this.state.modal,
-      newbotname:this.state.newbotname,
-      newbotdesc: this.state.newbotdesc
+      newBotName:this.state.newBotName,
+      newBotDesc: this.state.newBotDesc
     });
   }
 
   render() {
-    const {bots, bot_number, modal, newbotname, newbotdesc} = this.state;
+    const {bots, numberOfBots, modal, newBotName, newBotDesc} = this.state;
 
-    const bot_list = bots.map(
-      bot => (<CardComponent key={bot.id} thisbot={bot} onRemove={this.handleRemove} />)
+    const botList = bots.map(
+      bot => (<CardComponent key={ bot.id } thisBot={ bot } onRemove={ this.handleRemove } />)
     );
 
-    const closeBtn = <button className="close" onClick={this.toggle}>&times;</button>;
+    const closeBtn = <button className="close" onClick={ this.toggle }>&times;</button>;
 
     return (
       <div className="app">
@@ -187,15 +178,15 @@ class Home extends Component {
             <Container fluid>
               <Row>
                 <Col className="align-items-center">
-                  <h4>내 봇<Badge color="danger">{bot_number}</Badge></h4>
+                  <h4>내 봇<Badge color="danger">{ numberOfBots }</Badge></h4>
                 </Col>
               </Row>
               <Row>
-                {bot_list}
+                { botList }
               </Row>
               <Row>
                 <Col>
-                  <Button color="warning" size="lg" block onClick={this.toggle}>봇 생성</Button>
+                  <Button color="warning" size="lg" block onClick={ this.toggle }>봇 생성</Button>
                 </Col>
               </Row>
             </Container>
@@ -204,22 +195,22 @@ class Home extends Component {
             <Aside />
           </AppAside>
         </div>
-        <Modal isOpen={modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle} close={closeBtn}>봇 생성</ModalHeader>
+        <Modal isOpen={ modal } toggle={ this.toggle } className={ this.props.className }>
+          <ModalHeader toggle={ this.toggle } close={ closeBtn }>봇 생성</ModalHeader>
           <ModalBody>
             <Form>
               <FormGroup>
               <Label for="bot-name">봇 이름</Label>
-              <Input type="text" name="newbotname" id="bot-name" invalid value={newbotname} onChange={this.handleChange}/>
+              <Input type="text" name="newBotName" id="bot-name" invalid value={ newBotName } onChange={ this.handleChange }/>
               <FormFeedback invalid>봇 이름을 설정해주세요!</FormFeedback>
               <Label for="bot-desc">봇 설명</Label>
-              <Input type="textarea" name="newbotdesc" id="bot-desc" value={newbotdesc} onChange={this.handleChange} onKeyPress={this.handleKeyPress}/>
+              <Input type="textarea" name="newBotDesc" id="bot-desc" value={ newBotDesc } onChange={ this.handleChange } onKeyPress={ this.handleKeyPress }/>
               </FormGroup>
             </Form>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.handleWrite}>생성</Button>{' '}
-            <Button color="secondary" onClick={this.toggle}>취소</Button>
+            <Button color="primary" onClick={ this.handleWrite }>생성</Button>{' '}
+            <Button color="secondary" onClick={ this.toggle }>취소</Button>
           </ModalFooter>
         </Modal>
       </div>
@@ -230,7 +221,7 @@ class Home extends Component {
 const mapStateToProps = (state) => {
   return {
       status: state.authentication.status,
-      bots: state.bot.bot_list
+      bots: state.bot.jsonBotList
   };
 };
 

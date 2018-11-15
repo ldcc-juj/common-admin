@@ -11,9 +11,9 @@ class CardComponent extends Component {
     }
 
     handleRemove(){
-        const {thisbot, onRemove} = this.props;
+        const {thisBot, onRemove} = this.props;
 
-        onRemove(thisbot.id);
+        onRemove(thisBot.id);
     }
 
     onHref(url){
@@ -21,7 +21,7 @@ class CardComponent extends Component {
     }
 
     render(){
-        const {thisbot: {id, name, description}} = this.props;
+        const {thisBot: {id, name, description}} = this.props;
 
         let bot_url = "/bot/" + id + "/scenario";
 

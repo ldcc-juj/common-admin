@@ -11,9 +11,9 @@ class ScenarioCard extends Component {
     }
 
     handleRemove(){
-        const {thisscenario, onRemove} = this.props;
+        const {thisScenario, onRemove} = this.props;
 
-        onRemove(thisscenario.id);
+        onRemove(thisScenario.id);
     }
 
     onHref(url){
@@ -21,9 +21,9 @@ class ScenarioCard extends Component {
     }
 
     render(){
-        const {thisscenario: {id, title, blocks}, bot_id} = this.props;
+        const {thisScenario: {id, title, blocks}, botId} = this.props;
 
-        let scenarioUrl = "/bot/"+bot_id+"/scenario/"+{id}.id;
+        let scenarioUrl = "/bot/"+botId+"/scenario/"+{id}.id;
 
         return (
             <Col xs="3">
