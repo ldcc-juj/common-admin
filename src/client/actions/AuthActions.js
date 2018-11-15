@@ -12,11 +12,11 @@ import {
 } from './ActionTypes';
 
 export function loginRequest (account, password) {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(login()); // login API start
 
-        return axios.post('/auth/login', {account, password})
-        .then(res => responseAction(dispatch, res, loginSuccess, res.data.data.user.id, loginFailure))
+        return await axios.post('/auth/login', {account, password})
+        .then(res => responseAction(dispatch, res.data.code, res.data.data, loginSuccess, res.data.data.user.id, loginFailure))
         .catch(e => dispatch(loginFailure()));
     };
 }
@@ -41,11 +41,11 @@ export function loginFailure () {
 }
 
 export function getStatusRequest(){
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(getStatus());
 
-        return axios.post('/auth/getSession')
-        .then(res => responseAction(dispatch, res, getStatusSuccess, res.data.data.session, getStatusFailure))
+        return await axios.post('/auth/getSession')
+        .then(res => responseAction(dispatch, res.data.code, res.data.data, getStatusSuccess, res.data.data.session, getStatusFailure))
         .catch(e=>dispatch(getStatusFailure()));
     };
 }

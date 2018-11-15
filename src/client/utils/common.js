@@ -1,3 +1,3 @@
-export function responseAction(dispatch, res, successFunc, successParam, failFunc){
-    res.data.code !== '9000' &&  res.data.data !== null? successParam !== null? dispatch(successFunc(successParam)):dispatch(successFunc()):dispatch(failFunc())
+export function responseAction(dispatch, code, data, successFunc, successParam, failFunc){
+    code !== '9000' &&  data !== null? successParam !== null? dispatch(successFunc(successParam)):dispatch(successFunc()):dispatch(failFunc())
 }

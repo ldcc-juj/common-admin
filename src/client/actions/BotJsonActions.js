@@ -8,11 +8,11 @@ import {
 } from './ActionTypes';
 
 export function getJsonRequest(BotId){
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(getJson()); // getBots API start
 
-        return axios.post('/bots/getJson', {BotId})
-        .then(res => responseAction(dispatch, res, getJsonSuccess, res.data.data.data, getJsonFailure))
+        return await axios.post('/bots/getJson', {BotId})
+        .then(res => responseAction(dispatch, res.data.code, res.data.data, getJsonSuccess, res.data.data.data, getJsonFailure))
         .catch(e => dispatch(getJsonFailure()));
     };
 }
