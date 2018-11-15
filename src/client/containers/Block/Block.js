@@ -25,8 +25,11 @@ class Block extends Component {
     addEvent = false;
     removeEvent = false;
 
-    blockArray = []; // state.blocks에 저장하기 위한 배열
-    wholeBlocks = []; // 전체 블록 리스트 저장
+    /* state에 flow를 고려해서 블록들을 저장하기 위한 배열 */
+    blockArray = [];
+
+    /* json데이터를 파싱한 전체 블록 리스트 저장 */
+    wholeBlocks = [];
 
     botId = this.props.match.params.bot_name;
     scenarioId = this.props.match.params.scenario_name;
@@ -59,26 +62,29 @@ class Block extends Component {
     componentDidMount(){
         let data = [];
 
+        /* 다른 시나리오 선택 시 기존 로컬 스토리지 내 데이터 삭제 */
         if(localStorage.getItem('currentScenario') !== this.scenarioId){
             localStorage.removeItem('currentBlockList');
-        } // 다른 시나리오를 편집하러 들어왔을 시 로컬 스토리지 비움
+        }
 
+        /* 새로고침 눌렀을 때 이미 데이터를 가지고 있으므로 로컬 스토리지의 데이터로 setState */
         if(localStorage.getItem('currentBlockList')){
             return this.setState({
                 blocks: JSON.parse(localStorage.getItem('currentBlockList'))
             });
-        } // 새로고침 눌렀을 때 이미 데이터를 가지고 있으므로 이걸로 state 저장
+        }
 
         if(this.props.jsonBlockList.status === 'SUCCESS'){
-            data = JSON.parse(this.props.jsonBlockList.scenarios); // 전역 state의 JSON 내의 시나리오 파싱 
+            data = JSON.parse(this.props.jsonBlockList.scenarios);
 
             let current_blocks = JSON.parse(JSON.stringify(data.scenarios[this.scenarioId].list));
 
-            let startBlocks = data.scenarios[this.scenarioId].head; // 시나리오 내 head 배열 저장
+            let startBlocks = data.scenarios[this.scenarioId].head;
 
-            this.wholeBlocks = Object.values(current_blocks); // json 객체 배열화
+            this.wholeBlocks = Object.values(current_blocks);
 
-            startBlocks.forEach((element) => { // head 배열부터 state에 저장
+            /* head 배열의 블록부터 state에 저장 */
+            startBlocks.forEach((element) => {
                 let toInt = parseInt(element);
 
                 this.blockArray.push({
@@ -88,7 +94,8 @@ class Block extends Component {
                     tree: 0
                 });
     
-                if(this.wholeBlocks[toInt].next !== null) { // head 배열의 next가 있을 시 재귀 함수 돌면서 저장
+                /* head 배열의 블록들에 next flow가 있을 시 재귀 함수 돌면서 저장 */
+                if(this.wholeBlocks[toInt].next !== null) {
                     this.recursivePushArray(this.wholeBlocks[toInt].next, `${this.scenarioId}_${toInt}`, 1);
                 }
             });
@@ -97,9 +104,11 @@ class Block extends Component {
                 blocks: this.blockArray
             });
 
-            localStorage.setItem('currentScenario', this.scenarioId); // 로컬스토리지를 갱신해야 하는지(다른 시나리오에 들어왔는지) 판단하기 위해 저장
+            /* 로컬스토리지를 갱신해야 하는지 판단하기 위해 저장 */
+            localStorage.setItem('currentScenario', this.scenarioId);
 
-            localStorage.setItem('currentBlockList', JSON.stringify(this.blockArray)); // 새로고침 누를 시 redux state가 유지되지 않으므로 로컬 스토리지에 저장
+            /* 새로고침 누를 시 redux state가 유지되지 않으므로 로컬 스토리지에 저장 */
+            localStorage.setItem('currentBlockList', JSON.stringify(this.blockArray));
         }
         
         this.id = this.blockArray.length;
@@ -138,13 +147,11 @@ class Block extends Component {
     }
 
     goScenarioList() {
-        
         const url = `/bot/${this.botId}/scenario`;
         this.props.history.push(url);
     }
 
     createNewBlock() {
-
         const url = `/bot/${this.botId}/intent/new?scenarioId=${this.scenarioId}`;
         this.props.history.push(url);
     }
@@ -154,7 +161,6 @@ class Block extends Component {
             return this.addEvent = this.removeEvent = false;
         }
         else{
-
             const url = `/bot/${this.botId}/intent/${id}?scenarioId=${this.scenarioId}`;
             this.props.history.push(url);
         }

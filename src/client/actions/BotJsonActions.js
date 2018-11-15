@@ -9,7 +9,7 @@ import {
 
 export function getJsonRequest(BotId){
     return async (dispatch) => {
-        dispatch(getJson()); // getBots API start
+        dispatch(getJson());
 
         return await axios.post('/bots/getJson', {BotId})
         .then(res => responseAction(dispatch, res.data.code, res.data.data, getJsonSuccess, res.data.data.data, getJsonFailure))

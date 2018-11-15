@@ -38,7 +38,7 @@ app.use(
   })
 );
 
-app.use(async(req, res, next) => {
+app.use(async (req, res, next) => {
   if(req.cookies.key && !req.session.auth){
     await res.clearCookie('key');
   }
@@ -47,7 +47,7 @@ app.use(async(req, res, next) => {
 
 const sessionCheck = (req, res, next) => {
   if(req.session.auth && req.cookies.key){
-    res.redirect('/home');
+    res.redirect('/');
   }
   else{
     next();

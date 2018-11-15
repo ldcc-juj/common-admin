@@ -29,9 +29,7 @@ const RoutesModule = (function (){
 
       app.use('/auth', authCtrl);
       app.use('/bots', botCtrl);
-      // app.use('/account', accountCtrl);
-      // app.use('/file', fileCtrl);
-      //app.use('/api/blame', blameCtrl);
+
       console.log(util.format('[Logger]::[Route]::[Service]::[%s]::[Started]',
                                 moment().tz('Asia/Seoul').format('YYYY-MM-DD HH:mm:ss')));
     }

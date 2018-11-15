@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { Container, Row, Col, Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, FormFeedback, TabContent, TabPane, Nav, NavItem, NavLink, ListGroup, ListGroupItem, Card, CardTitle } from 'reactstrap';
-import { Redirect, Route, Switch } from 'react-router-dom';
 import classnames from 'classnames';
 import { AppSwitch } from '@coreui/react';
 import { connect } from 'react-redux';
@@ -19,7 +18,7 @@ class Scenario extends Component {
 
         this.state = {
             activeTab: '1',
-            scenarioes: [],
+            scenarios: [],
             modal: false, 
             newScenario: '',
             welcomeId: '',
@@ -54,15 +53,15 @@ class Scenario extends Component {
         this.props.getJsonRequest(this.botId).then(_ => {
 
             if(this.props.jsonScenarioList.status === 'SUCCESS'){
-                data = JSON.parse(this.props.jsonScenarioList.scenarios); // JSON 내 시나리오 파싱
+                data = JSON.parse(this.props.jsonScenarioList.scenarios);
                 
-                let scenarioArr = [];
+                let scenarioArray = [];
 
                 this.id = Object.values(data.scenarios).length;
 
-                Object.values(data.scenarios).forEach((element, index) => { // 각 시나리오의 이름, 타이틀, 블록 목록을 state에 저장
-                    scenarioArr.push({
-                        id: `scenario_0${index+1}`,
+                Object.values(data.scenarios).forEach((element, index) => { 
+                    scenarioArray.push({
+                        id: `scenario_${ (index+1) < 10 ? `0${index+1}` : `${index+1}` }`,
                         title: element.name,
                         blocks: Object.values(element.list),
                     });
@@ -70,7 +69,7 @@ class Scenario extends Component {
 
                 this.setState({
                     activeTab: '1',
-                    scenarioes: scenarioArr,
+                    scenarios: scenarioArray,
                     modal: false,
                     newScenario: '',
                     welcomeId: `${this.botId}_welcome`,
@@ -86,7 +85,7 @@ class Scenario extends Component {
         this.state.welcomeId === id? 
             this.setState({
                 activeTab: this.state.activeTab,
-                scenarioes: this.state.scenarioes,
+                scenarios: this.state.scenarios,
                 modal: this.state.modal,
                 newScenario: this.state.newScnario,
                 welcomeId: this.state.welcomeId,
@@ -96,7 +95,7 @@ class Scenario extends Component {
             }) 
             : this.setState({
                 activeTab: this.state.activeTab,
-                scenarioes: this.state.scenarioes,
+                scenarios: this.state.scenarios,
                 modal: this.state.modal,
                 newScenario: this.state.newScenario,
                 welcomeId: this.state.welcomeId,
@@ -109,7 +108,7 @@ class Scenario extends Component {
     handleRemove(id){
         this.setState({
             activeTab: this.state.activeTab,
-            scenarioes: this.state.scenarioes.filter(scenario => scenario.id !== id),
+            scenarios: this.state.scenarios.filter(scenario => scenario.id !== id),
             modal: this.state.modal,
             newScenario: this.state.newScenario,
             welcomeId: this.state.welcomeId,
@@ -122,7 +121,7 @@ class Scenario extends Component {
     toggle() {
         this.setState({
             activeTab: this.state.activeTab,
-            scenarioes: this.state.scenarioes,
+            scenarios: this.state.scenarios,
             modal: !this.state.modal,
             newScenario: this.state.newScenario,
             welcomeId: this.state.welcomeId,
@@ -146,21 +145,15 @@ class Scenario extends Component {
         let newScenario = this.state.newScenario;
         ++this.id;
 
-        let prefix = "scenario_0";
-
-        if(this.id >= 10){
-            prefix = `scenario_${this.id/10}`;
-        }
-
-        let newScenarioList = [...this.state.scenarioes, {
-            id: prefix+(this.id % 10),
+        let newScenarioList = [...this.state.scenarios, {
+            id: `scenario_${ this.id < 10 ? `0${this.id}` : `${this.id}` }`,
             title: newScenario,
             blocks: []
         }];
     
         this.setState({
             activeTab: this.state.activeTab,
-            scenarioes: newScenarioList,
+            scenarios: newScenarioList,
             modal: false,
             newScenario: '',
             welcomeId: this.state.welcomeId,
@@ -193,9 +186,9 @@ class Scenario extends Component {
     }
 
     render (){
-        const { scenarioes, modal, newScenario, activeTab } = this.state;
+        const { scenarios, modal, newScenario, activeTab } = this.state;
 
-        const scenarioList = scenarioes.map(
+        const scenarioList = scenarios.map(
             scenario => (<ScenarioCard key={ scenario.id } thisScenario={ scenario } onRemove={ this.handleRemove } botId={ this.botId } />)
         );
 

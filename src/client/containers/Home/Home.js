@@ -160,7 +160,7 @@ class Home extends Component {
   }
 
   render() {
-    const {bots, numberOfBots, modal, newBotName, newBotDesc} = this.state;
+    const { bots, numberOfBots, modal, newBotName, newBotDesc } = this.state;
 
     const botList = bots.map(
       bot => (<CardComponent key={ bot.id } thisBot={ bot } onRemove={ this.handleRemove } />)

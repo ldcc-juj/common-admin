@@ -18,7 +18,7 @@ import {
 
 export function getBotsRequest (id) {
     return async (dispatch) => {
-        dispatch(getBots()); // getBots API start
+        dispatch(getBots());
 
         return await axios.post('/bots/getbot', {id})
         .then(res => responseAction(dispatch, res.data.code, res.data.data, getBotSuccess, res.data.data.bot_list, getBotFailure))

@@ -442,9 +442,10 @@ router.post('/getJson', async (req, res) => {
     try{
         await go(
             testJson,
-            jsonData => !!jsonData? respondJson(res, resultCode.success, { data: jsonData }):respondJson(res, resultCode.error, null)
+            jsonData => !!jsonData ? respondJson(res, resultCode.success, { data: jsonData }) : respondJson(res, resultCode.error, null)
         );
     }
-    catch(error){respondOnError(res, resultCode.error, error.message);}
+    catch(error){respondOnError(res, resultCode.error, error.message)}
 });
+
 module.exports = router;
