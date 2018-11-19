@@ -25,10 +25,10 @@ class Home extends Component {
 
     this.state = {
       bots: [],
-      numberOfBots: 0,
+      botNumber: 0,
       modal: false,
-      newBotName:``,
-      newBotDesc:``
+      newBotName:'',
+      newBotDesc:''
     }
 
     this.toggle = this.toggle.bind(this);
@@ -63,7 +63,7 @@ class Home extends Component {
     
             this.setState({
               bots: data,
-              numberOfBots: data.length,
+              botNumber: data.length,
               modal: this.state.modal,
               newBotName:this.state.newBotName,
               newBotDesc: this.state.newBotDesc
@@ -95,7 +95,7 @@ class Home extends Component {
 
     this.setState({
       bots: data,
-      numberOfBots: data.length,
+      botNumber: data.length,
       modal: this.state.modal,
       newBotName:this.state.newBotName,
       newBotDesc: this.state.newBotDesc
@@ -106,7 +106,7 @@ class Home extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
 
-    if (nextState.bots.length !== nextState.numberOfBots) return false;
+    if (nextState.bots.length !== nextState.botNumber) return false;
     return true;
   }
 
@@ -124,7 +124,7 @@ class Home extends Component {
 
     this.setState({
       bots: newBotList,
-      numberOfBots: ++this.state.numberOfBots,
+      botNumber: ++this.state.botNumber,
       modal: false,
       newBotName:'',
       newBotDesc: ''
@@ -135,7 +135,7 @@ class Home extends Component {
 
     this.setState({
       bots: this.state.bots.filter(bot => bot.id !== id),
-      numberOfBots: --this.state.numberOfBots,
+      botNumber: --this.state.botNumber,
       modal: this.state.modal,
       newBotName:'',
       newBotDesc: ''
@@ -152,7 +152,7 @@ class Home extends Component {
   toggle() {
     this.setState({
       bots: this.state.bots,
-      numberOfBots: this.state.numberOfBots,
+      botNumber: this.state.botNumber,
       modal: !this.state.modal,
       newBotName:this.state.newBotName,
       newBotDesc: this.state.newBotDesc
@@ -160,7 +160,7 @@ class Home extends Component {
   }
 
   render() {
-    const { bots, numberOfBots, modal, newBotName, newBotDesc } = this.state;
+    const {bots, botNumber, modal, newBotName, newBotDesc} = this.state;
 
     const botList = bots.map(
       bot => (<CardComponent key={ bot.id } thisBot={ bot } onRemove={ this.handleRemove } />)
@@ -178,7 +178,7 @@ class Home extends Component {
             <Container fluid>
               <Row>
                 <Col className="align-items-center">
-                  <h4>내 봇<Badge color="danger">{ numberOfBots }</Badge></h4>
+                  <h4>내 봇<Badge color="danger">{botNumber}</Badge></h4>
                 </Col>
               </Row>
               <Row>
@@ -201,10 +201,10 @@ class Home extends Component {
             <Form>
               <FormGroup>
               <Label for="bot-name">봇 이름</Label>
-              <Input type="text" name="newBotName" id="bot-name" invalid value={ newBotName } onChange={ this.handleChange }/>
+              <Input type="text" name="newBotName" id="bot-name" invalid value={newBotName} onChange={this.handleChange}/>
               <FormFeedback invalid>봇 이름을 설정해주세요!</FormFeedback>
               <Label for="bot-desc">봇 설명</Label>
-              <Input type="textarea" name="newBotDesc" id="bot-desc" value={ newBotDesc } onChange={ this.handleChange } onKeyPress={ this.handleKeyPress }/>
+              <Input type="textarea" name="newBotDesc" id="bot-desc" value={newBotDesc} onChange={this.handleChange} onKeyPress={this.handleKeyPress}/>
               </FormGroup>
             </Form>
           </ModalBody>
