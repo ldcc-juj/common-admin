@@ -13,6 +13,9 @@
 <li>bot-db<br>
 2-1. mariadb 10.3 설치 및 설정<br>
 2-2. mongodb 4.0 (latest) 설치</li>
+<li>현재 계정 설정<br>
+3-1. redis<br>
+3-2. mariadb</li>
 </ol>
 <h2 id="bot-web">1. bot-web</h2>
 <h3 id="redis-4.0-설치-및-설정">1-1. redis 4.0 설치 및 설정</h3>
@@ -77,5 +80,17 @@ bind-address=${SERVER_IP}</p>
 </ul>
 <blockquote>
 <p><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/">https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/</a></p>
+</blockquote>
+<h2 id="현재-계정-설정">3. 현재 계정 설정</h2>
+<h3 id="redis">3-1. redis</h3>
+<blockquote>
+<p>password: test123$</p>
+</blockquote>
+<h3 id="mariadb">3-2. mariadb</h3>
+<blockquote>
+<p>user: <a href="mailto:admin@10.131.7.162">admin@10.131.7.162</a><br>
+password: test123$<br>
+root: root@localhost<br>
+root_password: test123$</p>
 </blockquote>
 
